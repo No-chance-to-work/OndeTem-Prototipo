@@ -1,6 +1,5 @@
 let lojaSelecionada = 'todas';
 
-// Função para gerar placeholders dinâmicos SVG
 function gerarImagemSVG(nome) {
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
         <rect width="100" height="100" fill="#f1f5f9"/>
@@ -13,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     buscarProdutosDoBanco();
 });
 
-// BUSCA DADOS REAIS DA API (SQLite)
 async function buscarProdutosDoBanco() {
     const termoBusca = document.getElementById('searchInput')?.value.trim() || '';
     
@@ -95,7 +93,7 @@ async function realizarLogin(event) {
     const email = document.getElementById('email').value;
 
     try {
-        const resposta = await fetch('/api/login', {
+        const resposta = await fetch('/api/auth/email', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email })
@@ -111,7 +109,41 @@ async function realizarLogin(event) {
     }
 }
 
-function autenticarGoogle() {
-    alert('Autenticação Google simulada!');
-    fecharTelaLogin();
+async function handleCredentialResponse(response) {
+    const data = parseJwt(response.credential);
+    
+    try {
+        const resposta = await fetch('/api/auth/google', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email: data.email,
+                nome: data.name
+            })
+        });
+
+        const dados = await resposta.json();
+
+        if (resposta.ok) {
+            alert(`Bem-vindo, ${data.name}!`);
+            fecharTelaLogin();
+            document.querySelector('.auth-buttons').innerHTML = `
+                <span style="color: #00e676; font-weight: 600;">👋 ${data.name}</span>
+            `;
+        } else {
+            alert(dados.error || 'Erro ao autenticar com o Google.');
+        }
+    } catch (err) {
+        console.error('Erro ao conectar com o servidor:', err);
+    }
+}
+
+function parseJwt(token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
 }
