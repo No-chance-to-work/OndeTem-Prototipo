@@ -13,7 +13,6 @@ body {
     overflow-x: hidden;
 }
 
-
 .view-section {
     display: none;
 }
@@ -312,13 +311,16 @@ body {
     white-space: nowrap;
     z-index: 2;
 }
+
+/* TELA DE LOGIN ESTILIZADA EM VERDE ESCURO */
 .login-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #f8f9fa;
+    background: radial-gradient(circle at center, #055e4c 0%, #033f33 100%);
+    backdrop-filter: blur(8px);
     z-index: 999;
     display: none;
     align-items: center;
@@ -331,36 +333,36 @@ body {
 }
 
 .login-card {
-    background: #ffffff;
+    background: #022b23;
     width: 100%;
     max-width: 440px;
     padding: 3rem 2.5rem 2rem 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-    border: 1px solid #eaeaea;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 230, 118, 0.2);
     text-align: center;
     position: relative;
 }
 
 .login-card h2 {
-    font-size: 1.75rem;
+    font-size: 1.85rem;
     font-weight: 700;
-    color: #111111;
+    color: #ffffff;
     margin-bottom: 6px;
 }
 
 .subtitle {
-    color: #666666;
+    color: #a3c2b8;
     font-size: 0.95rem;
     margin-bottom: 2rem;
 }
 
 .btn-google {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #e0e0e0;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 30px;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -368,12 +370,13 @@ body {
     cursor: pointer;
     font-size: 0.95rem;
     font-weight: 600;
-    color: #333;
-    transition: background-color 0.2s;
+    color: #ffffff;
+    transition: all 0.2s ease;
 }
 
 .btn-google:hover {
-    background-color: #f5f5f5;
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .divider {
@@ -389,14 +392,14 @@ body {
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: #eeeeee;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .divider span {
     position: relative;
-    background-color: #ffffff;
+    background-color: #022b23;
     padding: 0 15px;
-    color: #999999;
+    color: #a3c2b8;
     font-size: 0.85rem;
 }
 
@@ -409,83 +412,98 @@ body {
     font-size: 0.85rem;
     font-weight: 600;
     margin-bottom: 8px;
-    color: #333333;
+    color: #a3c2b8;
 }
 
 #loginForm input {
     width: 100%;
     padding: 14px 16px;
-    border-radius: 10px;
-    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
     margin-bottom: 1.8rem;
     outline: none;
     font-size: 0.95rem;
-    transition: border-color 0.2s;
+    transition: all 0.2s ease;
+}
+
+#loginForm input::placeholder {
+    color: #6a9487;
 }
 
 #loginForm input:focus {
-    border-color: #00b074;
+    border-color: #00e676;
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 .btn-continue {
     width: 100%;
-    background-color: #00b074;
-    color: #ffffff;
+    background-color: #00e676;
+    color: #033f33;
     border: none;
     padding: 14px;
     border-radius: 30px;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: background-color 0.2s;
+    transition: transform 0.1s ease, background-color 0.2s ease;
 }
 
 .btn-continue:hover {
-    background-color: #009663;
+    background-color: #00c865;
+    transform: translateY(-2px);
 }
 
 .signup-text {
     margin-top: 1.8rem;
     font-size: 0.9rem;
-    color: #666666;
+    color: #a3c2b8;
 }
 
 .signup-text a {
-    color: #00b074;
+    color: #00e676;
     text-decoration: none;
     font-weight: 600;
+}
+
+.signup-text a:hover {
+    text-decoration: underline;
 }
 
 .dev-badge {
     display: block;
     margin-top: 2rem;
     font-size: 0.8rem;
-    color: #ff6b00;
+    color: #00e676;
+    opacity: 0.7;
     font-weight: 500;
 }
 
 .btn-close-login {
     background: transparent;
     border: none;
-    color: #888;
+    color: #a3c2b8;
     margin-top: 15px;
     cursor: pointer;
     font-size: 0.85rem;
+    transition: color 0.2s;
 }
 
 .btn-close-login:hover {
-    color: #333;
+    color: #00e676;
 }
 
 .replit-badge {
     position: fixed;
     bottom: 15px;
     right: 15px;
-    background-color: #1c2333;
+    background-color: #022b23;
+    border: 1px solid rgba(0, 230, 118, 0.2);
     color: #ffffff;
     padding: 8px 14px;
     border-radius: 8px;
@@ -500,7 +518,7 @@ body {
 .replit-badge button {
     background: none;
     border: none;
-    color: #888;
+    color: #a3c2b8;
     cursor: pointer;
     font-size: 0.9rem;
 }
