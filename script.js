@@ -1,8 +1,3 @@
-// =========================================================================
-// 1. BANCO DE DADOS & BACKEND (IMAGENS EM BASE64 / EMBEDDED LOCAIS)
-// =========================================================================
-
-// Função para gerar texturas/imagens SVG ultraleves e garantidas (sem quebrar no GitHub Pages)
 function gerarImagemSVG(nome, corFundo = "#e2e8f0", corTexto = "#475569") {
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
         <rect width="100" height="100" fill="${corFundo}"/>
@@ -11,7 +6,6 @@ function gerarImagemSVG(nome, corFundo = "#e2e8f0", corTexto = "#475569") {
     return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }
 
-// Simulador de Banco de Dados com os produtos idênticos à imagem enviada
 const produtosBD = [
     {
         id: 1,
@@ -105,10 +99,6 @@ const produtosBD = [
     }
 ];
 
-// =========================================================================
-// 2. FRONTEND - RENDERIZAÇÃO E FILTROS DE PRODUTOS
-// =========================================================================
-
 document.addEventListener('DOMContentLoaded', () => {
     carregarProdutos(produtosBD);
 });
@@ -164,10 +154,6 @@ function filtrarLoja(loja, elementoBtn) {
     }
 }
 
-// =========================================================================
-// 3. BLOQUEIOS DE SEGURANÇA & NAVEGAÇÃO ENTRE TELAS
-// =========================================================================
-
 function acaoBloqueada(acao) {
     alert(`Ação bloqueada! Você precisa estar conectado para: "${acao}". Redirecionando para a tela de login...`);
     abrirTelaLogin();
@@ -175,7 +161,7 @@ function acaoBloqueada(acao) {
 
 function abrirTelaLogin() {
     document.getElementById('loginView').classList.add('active');
-    document.body.style.overflow = 'hidden'; // Impede rolagem ao abrir o login
+    document.body.style.overflow = 'hidden';
 }
 
 function fecharTelaLogin() {
