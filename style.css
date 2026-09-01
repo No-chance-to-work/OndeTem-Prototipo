@@ -1,4 +1,3 @@
-/* RESET E CONFIGURAÇÕES GERAIS */
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +13,7 @@ body {
     overflow-x: hidden;
 }
 
-/* GERENCIADOR DE TELAS */
+
 .view-section {
     display: none;
 }
@@ -23,11 +22,6 @@ body {
     display: block;
 }
 
-/* ---------------------------------------------------- */
-/* TELA 1: INTERFACE PRINCIPAL                          */
-/* ---------------------------------------------------- */
-
-/* NAVBAR */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -92,7 +86,6 @@ body {
     background-color: #00c865;
 }
 
-/* HERO SECTION */
 .hero-section {
     text-align: center;
     padding: 2.5rem 1rem 1.5rem 1rem;
@@ -159,7 +152,6 @@ body {
     color: #00e676;
 }
 
-/* PRODUTOS E FILTROS */
 .products-section {
     padding: 2rem 4rem 4rem 4rem;
 }
@@ -224,7 +216,6 @@ body {
     font-weight: 500;
 }
 
-/* GRID DE CARDS DE PRODUTOS */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -321,11 +312,6 @@ body {
     white-space: nowrap;
     z-index: 2;
 }
-
-
-/* ---------------------------------------------------- */
-/* TELA 2: INTERFACE DE LOGIN                           */
-/* ---------------------------------------------------- */
 .login-overlay {
     position: fixed;
     top: 0;
@@ -495,7 +481,6 @@ body {
     color: #333;
 }
 
-/* REPLIT FLOATING BADGE (Como na imagem) */
 .replit-badge {
     position: fixed;
     bottom: 15px;
