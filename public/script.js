@@ -1,28 +1,9 @@
 let lojaSelecionada = 'todas';
 
-const imagemPorCategoria = {
-    'leite': 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=200&auto=format&fit=crop&q=80',
-    'arroz': 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=200&auto=format&fit=crop&q=80',
-    'detergente': 'https://images.unsplash.com/photo-1585832770485-e68a5fcfad52?w=200&auto=format&fit=crop&q=80',
-    'café': 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=200&auto=format&fit=crop&q=80',
-    'açúcar': 'https://images.unsplash.com/photo-1581441363689-1f3c3c414635?w=200&auto=format&fit=crop&q=80',
-    'feijão': 'https://images.unsplash.com/photo-1551462147-ff29053bfc14?w=200&auto=format&fit=crop&q=80',
-    'óleo': 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=200&auto=format&fit=crop&q=80'
-};
-
-function obterImagemProduto(nome, marca) {
-    const nomeLower = nome.toLowerCase();
-    for (let chave in imagemPorCategoria) {
-        if (nomeLower.includes(chave)) {
-            return imagemPorCategoria[chave];
-        }
-    }
-    
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
-        <rect width="120" height="120" rx="12" fill="#055e4c"/>
-        <circle cx="60" cy="50" r="28" fill="#00e676" opacity="0.2"/>
-        <text x="50%" y="48%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="28" fill="#00e676">🛒</text>
-        <text x="50%" y="82%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#ffffff">${marca.toUpperCase()}</text>
+function gerarImagemSVG(nome) {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+        <rect width="100" height="100" fill="#f1f5f9"/>
+        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#033f33">${nome}</text>
     </svg>`;
     return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }
@@ -62,12 +43,10 @@ function renderizarProdutos(lista) {
         card.className = 'product-card';
         card.onclick = () => acaoBloqueada(`Visualizar produto: ${produto.nome}`);
 
-        const imgUrl = obterImagemProduto(produto.nome, produto.marca);
-
         card.innerHTML = `
             <div class="product-img-wrapper">
                 ${produto.esgotado ? '<span class="out-of-stock-badge">Esgotado</span>' : ''}
-                <img src="${imgUrl}" alt="${produto.nome}" loading="lazy">
+                <img src="${gerarImagemSVG(produto.marca)}" alt="${produto.nome}">
             </div>
             <div class="product-info">
                 <h4>${produto.nome}</h4>
