@@ -1,0 +1,13 @@
+{
+  "name": "ondetem-prototipo",
+  "version": "1.0.0",
+  "description": "API do protótipo OndeTem",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "pg": "^8.11.5"
+  }
+}
