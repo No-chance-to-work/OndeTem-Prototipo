@@ -1,1 +1,100 @@
+PRAGMA foreign_keys = ON;
+
+-- =========================
+-- TABELA: lojas
+-- =========================
+
+CREATE TABLE lojas (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL,
+    endereco TEXT
+);
+
+-- =========================
+-- TABELA: produtos
+-- =========================
+
+CREATE TABLE produtos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL,
+    descricao TEXT,
+    preco NUMERIC(10, 2) NOT NULL,
+    loja_id INTEGER,
+    imagem_url TEXT,
+    FOREIGN KEY (loja_id) REFERENCES lojas(id)
+);
+
+-- =========================
+-- TABELA: usuarios
+-- =========================
+
+CREATE TABLE usuarios (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT,
+    email TEXT NOT NULL UNIQUE,
+    google_id TEXT UNIQUE
+);
+
+-- =========================
+-- DADOS: lojas
+-- =========================
+
+INSERT INTO lojas (id, nome, endereco) VALUES
+(1, 'Supermercado BomPreço', 'Av. Principal, 100'),
+(2, 'Extra Hiper', 'Rodovia BR-070, 500'),
+(3, 'Pão de Açúcar', 'Rua das Flores, 300'),
+(4, 'Atacadão', 'Av. Industrial, 1500'),
+(5, 'Carrefour Hiper', 'Shopping Center Local, Loja 1');
+
+-- =========================
+-- DADOS: produtos
+-- =========================
+
+INSERT INTO produtos (id, nome, descricao, preco, loja_id, imagem_url) VALUES
+(
+    1,
+    'Leite Integral 1L',
+    'Caixa 1 Litro - Parmalat ou Itambé',
+    5.49,
+    1,
+    'https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=500&q=80'
+),
+(
+    2,
+    'Arroz Branco 5kg',
+    'Tipo 1 - Pacote de 5 quilos',
+    24.90,
+    4,
+    'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=500&q=80'
+),
+(
+    3,
+    'Detergente Líquido 500ml',
+    'Neutro ou Limão - Ypê',
+    2.29,
+    2,
+    'https://images.unsplash.com/photo-1585837135231-d273a5f3f458?auto=format&fit=crop&w=500&q=80'
+),
+(
+    4,
+    'Açúcar Cristal 5kg',
+    'Refinado especial',
+    18.50,
+    5,
+    'https://images.unsplash.com/photo-1581441363689-1f3c3c62ba22?auto=format&fit=crop&w=500&q=80'
+),
+(
+    5,
+    'Café em Pó 500g',
+    'Torrado e moído - Melitta ou Pilão',
+    16.90,
+    3,
+    'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=500&q=80'
+);
+
+-- =========================
+-- USUÁRIOS
+-- =========================
+
+-- Nenhum usuário cadastrado inicialmente.
 
